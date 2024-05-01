@@ -24,7 +24,7 @@
   - name: check db connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: {{givepass}}
+      login_password: "{{ givepass }}"
       login_host: 54.174.221.108  
       register: mysqloutput
 
@@ -33,5 +33,5 @@
       msg: "output is {{ mysqloutput }}"
 
   -name: giving the password
-   ansible.builtin.command: mysql_secure_installation --set-root-pass {{ givepass }}
+   ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ givepass }}"
      when mysqloutput.failed is true    
