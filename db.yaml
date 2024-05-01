@@ -6,12 +6,12 @@
     prompt: please enter the password
   tasks:
   - name: install the mysql database
-      ansible.builtin.dnf:
+    ansible.builtin.dnf:
       name: mysql
       state: latest
   - name: start and enable the mysql
-      ansible.builtin.service:
+    ansible.builtin.service:
       name: mysql
       state: started
   - name: configuring the passwords
-      ansible.builtin.command: mysql_secure_installation --set-root-pass {{givepass}}
+    ansible.builtin.command: mysql_secure_installation --set-root-pass {{givepass}}
