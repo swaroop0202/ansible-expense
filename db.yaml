@@ -1,7 +1,7 @@
 - name: configurating the db servers
   hosts: db
   become: yes
-  vars:
+  vars_prompt:
     givepass: PASSWORD
     prompt: please enter the password
   tasks:
