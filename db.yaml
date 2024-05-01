@@ -14,8 +14,23 @@
       name: mysqld
       state: started
       enabled: yes
+  - name: installing the python dependencies
+    ansible.builtin.pip:
+      name:
+      - PyMySql
+      - cryptography
+      executable: pip3.3
+
   - name: check db connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: ExpenseApp@1
-      login_host: 54.174.221.108      
+      login_password: givepass
+      login_host: 54.174.221.108  
+      register: mysqloutput
+
+  - name: giving the output
+    ansible.builtin.debug:
+      msg: "output is {{ mysqloutput }}"
+
+  -name: giving the password
+   ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ givepass }}"      
