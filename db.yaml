@@ -32,6 +32,4 @@
     ansible.builtin.debug:
       msg: "output:  {{mysqloutput}}"
 
-  -name: giving the password
-   ansible.builtin.command: mysql_secure_installation --set-root-pass "{{ givepass }}"
-     when: mysqloutput.failed is true    
+      
