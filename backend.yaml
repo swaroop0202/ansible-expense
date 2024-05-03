@@ -1,7 +1,9 @@
 - name: configurating the backend server
   hosts: backend
   become: yes
-  vars:
+  vars_prompt:
+  - name: givepass
+    prompt: "please enter db password"
 
   tasks:
   - name: disabling the nodejs
@@ -49,6 +51,32 @@
     ansible.builtin.dnf:
       name: mysql
       state: latest
+
+  - name: installing the python dependencies
+    ansible.builtin.pip:
+      name:
+      - PyMySql
+      - cryptography
+      executable: pip3.9
+
+  - name: check db connection
+    community.mysql.mysql_info:
+      login_user: root
+      login_password: "{{ givepass }}"
+      login_host: db.masterdevops.store
+      target: /app/schema/backend.sql
+      state: import
+      name: all
+      
+
+
+  
+
+  
+
+  
+
+  
 
 
 
