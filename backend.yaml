@@ -1,9 +1,6 @@
 - name: configurating the backend server
   hosts: backend
   become: yes
-  vars_prompt:
-  - name: givepass
-    prompt: "please enter db password"
 
   tasks:
   - name: disabling the nodejs
@@ -62,12 +59,12 @@
   - name: check db connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: "{{ givepass }}"
+      login_password: ExpenseApp@1
       login_host: db.masterdevops.store
       target: /app/schema/backend.sql
       state: import
       name: all
-      
+
 
 
   
