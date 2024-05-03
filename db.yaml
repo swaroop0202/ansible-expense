@@ -25,7 +25,7 @@
     community.mysql.mysql_info:
       login_user: root
       login_password: "{{ givepass }}"
-      login_host: db.masterdevops.store
+      login_host: 172.31.21.239
       filter: version
     ignore_errors: yes    
     register: mysqloutput
