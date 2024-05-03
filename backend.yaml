@@ -35,11 +35,10 @@
       dest: /app 
       remote_src: yes 
 
-  - name: going to app directory
-    ansible.builtin.command: cd /app
-
   - name: installing npm dependencies
     ansible.builtin.command: npm install
+    args:
+      chdir: /app
 
   - name: copying the backend service into systems
     ansible.builtin.copy:
