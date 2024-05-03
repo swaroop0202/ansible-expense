@@ -40,7 +40,7 @@
   - name: copying the fronted service into systems
     ansible.builtin.copy:
       src: expense.conf 
-      dest: vim /etc/nginx/default.d/expense.conf
+      dest: /etc/nginx/default.d/expense.conf
 
   - name: restartingthe nginx
     ansible.builtin.service:
