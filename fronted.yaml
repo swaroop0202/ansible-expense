@@ -28,6 +28,7 @@
     ansible.buitin.unarchive:
       src: /tmp/frontend.zip 
       dest: /usr/share/nginx/html/
+      remote_src: yes 
 
   - name: copying the fronted service into systems
     ansible.builtin.copy:
