@@ -32,5 +32,22 @@
   - name: unzipping the code 
     ansible.builtin.unarchive:
       src: /tmp/backend.zip
-      dest: /app
+      dest: /app 
       remote_src: yes 
+
+  - name: installing npm dependencies
+    ansible.builtin.command: npm install
+
+  - name: copying the backend service into systems
+    ansible.builtin.copy:
+      src: backend.service 
+      dest: /etc/systemd/system
+
+  - name: installing mysql
+    ansible.builtin.dnf:
+      name: mysql
+      state: latest
+
+      
+
+    
