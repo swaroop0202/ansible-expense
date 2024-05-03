@@ -1,0 +1,20 @@
+- name: configurating the fronted server
+  hosts: fronted
+  become: yes
+  vars:
+  tasks:
+  - name: installing the nginx server
+    ansible.builtin.dnf:
+      name: nginx
+      state: latest
+
+  - name: enabling and stating the nginx
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: yes
+
+  - name: Remove file (delete file)
+    ansible.builtin.file:
+      path: /usr/share/nginx/html/*
+      state: absent

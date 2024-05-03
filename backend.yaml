@@ -56,7 +56,7 @@
       - cryptography
       executable: pip3.9
 
-  - name: check db connection
+  - name: importing schema into database
     community.mysql.mysql_db:
       login_user: root
       login_password: ExpenseApp@1
