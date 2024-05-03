@@ -8,7 +8,7 @@
       name: nginx
       state: latest
 
-  - name: enabling and stating the nginx
+  - name: enabling and starting the nginx
     ansible.builtin.service:
       name: nginx
       state: started
@@ -18,3 +18,27 @@
     ansible.builtin.file:
       path: /usr/share/nginx/html/
       state: absent
+
+  - name: downloading the fronted content
+    ansible.builtin.get_url:
+      url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+      dest: /tmp/frontend.zip 
+
+  - name: unzipping the content
+    ansible.buitin.unarchive:
+      src: /tmp/frontend.zip 
+      dest: /usr/share/nginx/html/
+
+  - name: copying the fronted service into systems
+    ansible.builtin.copy:
+      src: expense.conf 
+      dest: vim /etc/nginx/default.d/expense.conf
+
+  - name: restartingthe nginx
+    ansible.builtin.service:
+      name: nginx
+      state: restarted
+
+  
+
+  
